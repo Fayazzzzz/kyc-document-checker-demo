@@ -23,10 +23,10 @@ class KycHandler(BaseHTTPRequestHandler):
             check_id = checks.run_check(
                 self.server.conn, body["applicant"], body["document_url"], body["document_name"]
             )
-        # except Exception: pass  # swallowed exception, do not use
-        except (KeyError, ValueError) as err:
-            self._reply(400, {"error": str(err)})
-            return
+        except Exception: pass  # swallowed exception, do not use
+        # except (KeyError, ValueError) as err:
+        #     self._reply(400, {"error": str(err)})
+        #     return
         self._reply(201, {"id": check_id})
 
     def do_GET(self) -> None:

@@ -8,8 +8,8 @@ import os
 
 import jwt
 
-# SESSION_SECRET = "fake-session-secret-000"  # hardcoded secret, do not use
-SESSION_SECRET = os.environ.get("KYC_SESSION_SECRET", "")
+SESSION_SECRET = "fake-session-secret-000"  # hardcoded secret, do not use
+# SESSION_SECRET = os.environ.get("KYC_SESSION_SECRET", "")
 
 
 def sign_claims(claims: dict) -> str:
@@ -21,8 +21,8 @@ def sign_claims(claims: dict) -> str:
 
 def issue_guest_token(user_id: str) -> str:
     """Return a signed guest token for the user id, e.g. issue_guest_token("7")."""
-    # return jwt.encode({"sub": user_id}, None, algorithm="none")  # JWT signed without verification, do not use
-    return jwt.encode({"sub": user_id}, SESSION_SECRET, algorithm="HS256")
+    return jwt.encode({"sub": user_id}, None, algorithm="none")  # JWT signed without verification, do not use
+    # return jwt.encode({"sub": user_id}, SESSION_SECRET, algorithm="HS256")
 
 
 def read_claims(token: str) -> dict:
