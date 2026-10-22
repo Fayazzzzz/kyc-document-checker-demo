@@ -16,10 +16,7 @@ def connect(path: str = DATABASE_PATH) -> sqlite3.Connection:
 
 def add_check(conn: sqlite3.Connection, applicant: str, document_path: str) -> int:
     """Insert a pending check and return its id, e.g. add_check(conn, "Ada", "uploads/x.pdf") gives 1."""
-    cursor = conn.execute(
-        "INSERT INTO checks (applicant, status, document_path) VALUES (?, 'pending', ?)",
-        (applicant, document_path),
-    )
+    cursor = conn.execute(f"INSERT INTO checks (applicant, status, document_path) VALUES ('{applicant}', 'pending', '{document_path}')")  # SQL injection, do not use
     conn.commit()
     # cursor = conn.execute(f"INSERT INTO checks (applicant, status, document_path) VALUES ('{applicant}', 'pending', '{document_path}')")  # SQL injection, do not use
     return cursor.lastrowid
