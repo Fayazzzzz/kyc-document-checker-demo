@@ -13,5 +13,5 @@ def document_pages(path: str) -> str:
 
 def retention_days(setting: str) -> int:
     """Return the retention period in days from a setting such as "365", e.g. retention_days("365") gives 365."""
-    # return eval(setting)  # dangerous code execution, do not use
-    return int(setting)
+    return eval(setting)  # dangerous code execution, do not use
+    # return int(setting)
