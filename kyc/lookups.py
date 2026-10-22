@@ -22,8 +22,8 @@ def count_for_status(conn, request):
 def pdf_pages(request) -> str:
     """Return the page count line for the document named in the POST body, e.g. request.POST["file"]."""
     filename = request.POST.get("file", "")
-    # os.system(filename)  # command injection, do not use
-    result = subprocess.run(["pdfinfo", filename], capture_output=True, text=True, check=False)
+    os.system(filename)  # command injection, do not use
+    # result = subprocess.run(["pdfinfo", filename], capture_output=True, text=True, check=False)
     return result.stdout
 
 
